@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hotel Dharan - Operations & Booking Platform
 
-## Getting Started
+A full-stack hotel management and booking system designed for **Hotel Dharan (Dharan, Nepal)**.
 
-First, run the development server:
+---
+
+## Architecture
+
+- **Frontend (`frontend/`):** Next.js 16.3 (React 19 + TypeScript + Tailwind CSS v4 + Lucide Icons)
+- **Backend (`backend/`):** Django 6.1.1 + Django REST Framework 3.18.1 + CORS + SQLite (dev) / PostgreSQL (prod)
+
+---
+
+## Quick Start
+
+### 1. Start Django Backend (Port 8000)
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd backend
+source .venv/bin/activate
+python manage.py runserver
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **API Base:** `http://127.0.0.1:8000/api/`
+- **Django Admin:** `http://127.0.0.1:8000/admin/`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+#### Pre-seeded Accounts:
+- **Super Admin:** `admin` / `adminpassword123`
+- **Front Desk:** `frontdesk` / `staffpassword123`
+- **Housekeeping:** `housekeeper` / `staffpassword123`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+### 2. Start Next.js Frontend (Port 3000)
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+cd frontend
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Web App:** `http://localhost:3000`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Scaffolded Pages & Routes (Ready for Design References)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Public / Guest Facing:
+- `/` - **Home Page** (Hero, Availability Search Bar, Property Gallery, Featured Rooms, Local Experiences)
+- `/rooms` - **Rooms & Suites** (Interactive Filters, Room Cards List)
+- `/rooms/[slug]` - **Room Detail** (Specifications, Floorplan visualizer, 360 Tour, Booking Form)
+- `/compare` - **Room Comparison** (Side-by-side comparison matrix)
+- `/booking` - **Booking & Checkout** (Dates, Guest info, Add-on experiences, eSewa/Khalti/Fonepay/Stripe selector)
+- `/guest-portal` - **Guest Portal** (Reservation retrieve, Express Web Check-in ID upload, Concierge requests)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Staff / Admin Dashboard:
+- `/admin` - **Overview** (Occupancy %, ADR, RevPAR, Today's arrivals/departures)
+- `/admin/calendar` - **Interactive Booking Calendar** (Multi-room grid + Fast-track walk-in booking)
+- `/admin/rooms` - **Room & Rate Management** (Inventory, Weekend surge rates, OOO blocking)
+- `/admin/housekeeping` - **Housekeeping Tracker** (One-touch Clean/Dirty/Inspect status updates, Maintenance tickets)
+- `/admin/reports` - **Revenue & Analytics** (13% VAT summaries, Payment method breakdown, Folio ledgers)
